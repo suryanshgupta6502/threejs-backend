@@ -19,6 +19,7 @@ mongoose.connect(process.env.MONGODB)
 const userschema = new mongoose.Schema({
     name: {
         type: String,
+        require
     },
     device: {
         type: String

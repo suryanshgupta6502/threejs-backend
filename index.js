@@ -45,9 +45,16 @@ const usermodal = mongoose.model("donutWorld/User", userschema)
 app.post('/donutWorld', async (req, res) => {
     // console.log(req.rawHeaders);
     const { name, device } = req.body;
-    console.log(req.body);
-    const user = await usermodal({ name: name,userTimezone:usertime, device: device, rawData: req.rawHeaders }).save()
-    console.log(user);
+    // console.log(req.body);
+
+    const user = await usermodal({
+        name: name,
+        userTimezone: usertime,
+        device: device,
+        rawData: req.rawHeaders
+    }).save()
+
+    // console.log(user);
     res.send("donut world")
 })
 

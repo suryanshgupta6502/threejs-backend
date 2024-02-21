@@ -15,11 +15,20 @@ mongoose.connect(process.env.MONGODB)
     }).catch((err) => {
         console.log("error in coneciton", err);
     })
-const usertime = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' })
+const time = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+
+
+console.log(time);
 
 const userschema = new mongoose.Schema({
     name: {
         type: String,
+    },
+    time: {
+        type: String
+    },
+    intialwebsite: {
+        type: String
     },
     userTimezone: {
         type: String
@@ -39,17 +48,19 @@ const userschema = new mongoose.Schema({
 )
 
 
-const usermodal = mongoose.model("donutWorld/User", userschema)
+const usermodal = mongoose.model("donutWorld", userschema)
 
 
 app.post('/donutWorld', async (req, res) => {
     // console.log(req.rawHeaders);
-    const { name, device } = req.body;
-    // console.log(req.body);
+    const { name, device, intialwebsite, usertimezone } = req.body;
+    // console.log(req.rawHeaders);
 
     const user = await usermodal({
         name: name,
-        userTimezone: usertime,
+        time: time,
+        intialwebsite: intialwebsite,
+        userTimezone: usertimezone,
         device: device,
         rawData: req.rawHeaders
     }).save()

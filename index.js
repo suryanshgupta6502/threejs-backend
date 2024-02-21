@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGODB)
 const time = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
 
 
-console.log(time);
+//console.log(time);
 
 const userschema = new mongoose.Schema({
     name: {
